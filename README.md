@@ -19,4 +19,4 @@ go to http://localhost:3000
 
 `npm init` - create initial package.json
 `npm install <package> --save | -D` - install a package and save for dependencies
-`npm run <script>` - run a custom npm script such as `npm run webpack`;
+`npm run <script>` - run a custom npm script such as `npm run webpack`

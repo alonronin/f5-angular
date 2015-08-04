@@ -1,6 +1,7 @@
 ##Usage
 
 > clone the repository with `git clone` then run `npm install`
+run weback watcher `npm run webpack`
 to run the node server run `npm start`
 go to http://localhost:3000
 

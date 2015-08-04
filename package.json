@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "set DEBUG=f5-angular:* & node ./bin/www",
     "webpack": "webpack --watch"
   },
   "dependencies": {

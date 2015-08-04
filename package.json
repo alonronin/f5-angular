@@ -1,0 +1,19 @@
+{
+  "name": "f5-angular",
+  "version": "1.0.0",
+  "description": "f5 angular workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alonronin/f5-angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alonronin/f5-angular/issues"
+  },
+  "homepage": "https://github.com/alonronin/f5-angular#readme"
+}

@@ -13,6 +13,11 @@ angular.module('f5', [])
 
     this.addItem = function(){
         this.items.push(this.item);
+        this.item = '';
+    };
+
+    this.removeItem = function(item){
+        _.remove(this.items, item);
     };
 })
 

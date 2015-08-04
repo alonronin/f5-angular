@@ -12,7 +12,12 @@
     <h1 ng-bind="main.title"></h1>
 
     <ul class="list-group">
-        <li class="list-group-item" ng-repeat="item in main.items track by $index">{{item}}</li>
+        <li class="list-group-item" ng-repeat="item in main.items track by $index">
+            {{item}}
+
+            <a href="" class="btn btn-default pull-right" ng-click="main.removeItem(item)">Delete</a>
+            <div class="clearfix"></div>
+        </li>
     </ul>
 
     <input class="form-control" ng-model="main.item" type="text"/>

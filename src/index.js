@@ -17,7 +17,9 @@ angular.module('f5', [])
     };
 
     this.removeItem = function(item){
-        _.remove(this.items, item);
+        _.remove(this.items, function(i){
+            return i === item;
+        });
     };
 })
 

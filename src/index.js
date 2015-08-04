@@ -12,8 +12,6 @@ angular.module('f5', [])
     this.items = ListItems.items;
 
     this.addItem = function(item){
-        if(!item) return;
-
         this.items.push(item);
         this.item = '';
     };

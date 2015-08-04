@@ -20,7 +20,7 @@
         </li>
     </ul>
 
-    <form name="frm_add_item" class="form-inline" ng-submit="main.addItem(main.item)" novalidate>
+    <form name="frm_add_item" class="form-inline" ng-submit="frm_add_item.$valid && main.addItem(main.item)" novalidate>
         <div class="form-group" ng-class="{'has-error': frm_add_item.item.$invalid}">
             <input class="form-control" name="item" ng-model="main.item" type="text" required />
             <span ng-if="frm_add_item.item.$error.required">You must add an Itme</span>

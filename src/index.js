@@ -7,12 +7,14 @@ var angular = require('angular');
 
 angular.module('f5', [])
 
-.controller('MainCtrl', function($scope, ListItems){
+.controller('MainCtrl', function($scope, $timeout, ListItems){
     this.title = 'F5 Angular';
     this.items = ListItems.items;
 
-    this.addItem = function(){
-        this.items.push(this.item);
+    this.addItem = function(item){
+        if(!item) return;
+
+        this.items.push(item);
         this.item = '';
     };
 
@@ -21,6 +23,10 @@ angular.module('f5', [])
             return i === item;
         });
     };
+
+    $timeout(function(){
+        this.title = 'F5 Title Changed'
+    }.bind(this), 5000)
 })
 
 .service('ListItems', function(){

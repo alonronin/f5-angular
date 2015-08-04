@@ -1,3 +1,9 @@
+##Usage
+
+> clone the repository with `git clone` then run `npm install`
+to run the node server run `npm start`
+go to http://localhost:3000
+
 ##Resources
 
 - express: http://expressjs.com/

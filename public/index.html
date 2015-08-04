@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="f5">
 <head>
     <meta charset="UTF-8">
     <title>F5 Angular</title>
@@ -8,8 +8,22 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" ng-controller="MainCtrl as main">
+    <h1 ng-bind="main.title"></h1>
 
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="item in main.items track by $index">{{item}}</li>
+    </ul>
+
+    <input class="form-control" ng-model="main.item" type="text"/>
+    <button class="btn btn-default" ng-click="main.addItem()">Add Item</button>
+
+    <p>
+        {{main.title}}
+        <hr/>
+
+        <span ng-repeat="item in main.items track by $index">{{item}} </span>
+    </p>
 </div>
 
 <script src="js/vendors.js"></script>

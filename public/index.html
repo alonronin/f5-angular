@@ -21,19 +21,17 @@
     </ul>
 
     <form name="frm_add_item" class="form-inline" ng-submit="frm_add_item.$valid && main.addItem(main.item)" novalidate>
-        <div class="form-group" ng-class="{'has-error': frm_add_item.item.$invalid}">
+        <div class="form-group" ng-class="{'has-error': (frm_add_item.$submitted && frm_add_item.item.$invalid) || (frm_add_item.$dirty && frm_add_item.item.$invalid)}">
             <input class="form-control" name="item" ng-model="main.item" type="text" required />
-            <span ng-if="frm_add_item.item.$error.required">You must add an Itme</span>
+            <span ng-if="frm_add_item.$submitted && frm_add_item.item.$error.required">You must add an Itme</span>
             <button class="btn btn-default" type="submit">Add Item</button>
         </div>
     </form>
 
     <br/>
 
+    {{main.title}} <hr>
     <p>
-        {{main.title}}
-        <hr/>
-
         <span ng-repeat="item in main.items track by $index">{{item}} </span>
     </p>
 </div>

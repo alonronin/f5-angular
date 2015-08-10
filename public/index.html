@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="f5" ng-controller="MainCtrl as main">
+<html lang="en" ng-app="f5" ng-controller="MainCtrl as main" ng-cloak>
 
 <head>
 
@@ -24,6 +24,12 @@
 
     <!-- Custom Fonts -->
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>

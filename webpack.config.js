@@ -9,7 +9,8 @@ module.exports = {
             'angular',
             'angular-resource',
             'ui-router',
-            'bootstrap'
+            'bootstrap',
+            'metismenu'
         ]
     },
 

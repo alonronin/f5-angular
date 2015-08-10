@@ -16,6 +16,7 @@
     "express": "~4.13.1",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
+    "metismenu": "^2.1.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "ui-router": "0.0.1"

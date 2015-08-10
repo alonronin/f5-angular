@@ -8,9 +8,8 @@ module.exports = {
             'lodash',
             'angular',
             'angular-resource',
-            'ui-router',
-            'bootstrap',
-            'metismenu'
+            'angular-ui-router',
+            'bootstrap'
         ]
     },
 

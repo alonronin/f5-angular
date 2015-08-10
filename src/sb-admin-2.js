@@ -1,16 +1,11 @@
 (function($) {
     'use strict';
 
+    //Loads the correct sidebar on window load,
+    //collapses the sidebar on window resize.
+    // Sets the min-height of #page-wrapper to window size
     $(function () {
 
-        $('#side-menu').metisMenu();
-
-    });
-
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-// Sets the min-height of #page-wrapper to window size
-    $(function () {
         $(window).bind("load resize", function () {
             var topOffset = 50;
             var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
@@ -28,13 +23,5 @@
                 $("#page-wrapper").css("min-height", (height) + "px");
             }
         });
-
-        var url = window.location;
-        var element = $('ul.nav a').filter(function () {
-            return this.href == url || url.href.indexOf(this.href) == 0;
-        }).addClass('active').parent().parent().addClass('in').parent();
-        if (element.is('li')) {
-            element.addClass('active');
-        }
     });
 })(jQuery);

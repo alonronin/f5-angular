@@ -3,6 +3,7 @@
 var $ = require('jquery');
 var _ = require('lodash');
 
-require('metismenu');
+require('./metismenu');
 require('./sb-admin-2');
 
+require('./app');

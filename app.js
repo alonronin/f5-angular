@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var webpackMiddleware = require('webpack-dev-middleware');
+var webpack = require("webpack");
+var webpackConfig = require('./webpack.config');
 
 var routes = require('./routes/index');
 
@@ -16,6 +19,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(
+    webpackMiddleware(webpack(webpackConfig), {
+      publicPath: '/js/',
+      stats: { colors: true }
+    })
+);
 
 app.use('/', routes);
 

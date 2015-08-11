@@ -4,10 +4,20 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var webpackMiddleware = require('webpack-dev-middleware');
+var webpack = require("webpack");
+var webpackConfig = require('./webpack.config');
 
 var routes = require('./routes/index');
 
 var app = express();
+
+app.use(
+    webpackMiddleware(webpack(webpackConfig), {
+      publicPath: '/js/',
+      stats: { colors: true }
+    })
+);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

@@ -64,33 +64,44 @@ angular.module('f5', [
             if(abstract) e.preventDefault();
         };
 
-        var setActiveMenu = function(url){
-            var $ul = $('ul.nav a');
-            $ul.removeClass('active');
-
-            var element = $ul.filter(function () {
-                return $(this).attr('href') === url;
-            })
-                .addClass('active')
-                .parents('ul')
-                .addClass('in')
-                .parents('li')
-                .addClass('active');
-        };
-
-        _.defer(function(){
-            $('#side-menu').metisMenu();
-        });
-
         $scope.$on('$stateChangeSuccess', function(){
             self.title = $state.current.data.title;
 
             var url = $state.href($state.current, null, {inherit: false});
 
-            _.defer(function(){
-                setActiveMenu(url)
-            });
+            $scope.$emit('$setActiveMenu', url);
         });
+})
+
+.directive('menu', function(){
+    return {
+        restrict: 'A',
+        link: function link(scope, element, attrs){
+            var setActiveMenu = function(url){
+                var $ul = $(element).find('a');
+
+                $ul.removeClass('active')
+                    .filter(function () {
+                        return $(this).attr('href') === url;
+                    })
+                    .addClass('active')
+                    .parents('ul')
+                    .addClass('in')
+                    .parents('li')
+                    .addClass('active');
+            };
+
+            _.defer(function(){
+                $(element).metisMenu()
+            });
+
+            scope.$on('$setActiveMenu', function(e, url){
+                _.defer(function(){
+                    setActiveMenu(url)
+                });
+            })
+        }
+    }
 })
 
 .service('Menu', function(){

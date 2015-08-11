@@ -7,32 +7,22 @@ require('bootstrap');
 var angular = require('angular');
 
 angular.module('f5', [
+    require('angular-ui-router'),
     require('./list.items'),
-    require('angular-ui-router')
+    require('./dashboard'),
+    require('./items'),
+    require('./form')
 ])
 
-.config(function($logProvider, $stateProvider){
+.config(function($logProvider){
     $logProvider.debugEnabled(true);
-
-    $stateProvider
-        .state('dashboard', {
-            url: '/',
-            template: require('./dashboard/dashboard.html')
-        })
-        .state('items', {
-            url: '/items',
-            template: '<h1>Items</h1><item-list items="main.items"></item-list><p><a ui-sref="form">Go to form</a></p>'
-        })
-        .state('form', {
-            url: '/form',
-            controller: 'FormCtrl as form',
-            template: require('./form/form.html')
-        })
 })
 
-.controller('MainCtrl', function($scope, $timeout, $log, ListItems){
+.controller('MainCtrl', function($scope, $timeout, $log, $state, ListItems){
     this.title = 'F5 Angular';
     this.items = ListItems.items;
+
+    this.menu = _($state.get()).pluck('name').compact().value();
 })
 
 .service('ListItems', function(){
@@ -44,5 +34,3 @@ angular.module('f5', [
 })
 
 ;
-
-require('./form/form.ctrl');

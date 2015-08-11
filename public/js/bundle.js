@@ -12,32 +12,22 @@ webpackJsonp([0],{
 	var angular = __webpack_require__(2);
 
 	angular.module('f5', [
+	    __webpack_require__(21),
 	    __webpack_require__(1),
-	    __webpack_require__(21)
+	    __webpack_require__(29),
+	    __webpack_require__(28),
+	    __webpack_require__(27)
 	])
 
-	.config(function($logProvider, $stateProvider){
+	.config(function($logProvider){
 	    $logProvider.debugEnabled(true);
-
-	    $stateProvider
-	        .state('dashboard', {
-	            url: '/',
-	            template: __webpack_require__(22)
-	        })
-	        .state('items', {
-	            url: '/items',
-	            template: '<h1>Items</h1><item-list items="main.items"></item-list><p><a ui-sref="form">Go to form</a></p>'
-	        })
-	        .state('form', {
-	            url: '/form',
-	            controller: 'FormCtrl as form',
-	            template: __webpack_require__(23)
-	        })
 	})
 
-	.controller('MainCtrl', function($scope, $timeout, $log, ListItems){
+	.controller('MainCtrl', function($scope, $timeout, $log, $state, ListItems){
 	    this.title = 'F5 Angular';
 	    this.items = ListItems.items;
+
+	    this.menu = _($state.get()).pluck('name').compact().value();
 	})
 
 	.service('ListItems', function(){
@@ -49,8 +39,6 @@ webpackJsonp([0],{
 	})
 
 	;
-
-	__webpack_require__(26);
 
 /***/ },
 
@@ -100,7 +88,7 @@ webpackJsonp([0],{
 /***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Dashboard</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-3\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item\"><a ui-sref=\"items\">Items <span class=\"badge default pull-right\">{{main.items.length}}</span></a></li>\r\n            <li class=\"list-group-item\"><a ui-sref=\"form\">Form</a></li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div class=\"col-md-3\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item\"><a ui-sref=\"items\">Items <span class=\"badge default pull-right\">{{main.items.length}}</span></a></li>\r\n            <li class=\"list-group-item\"><a ui-sref=\"form\">Form</a></li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n"
+	module.exports = "<h1>Dashboard</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-3\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item\"><a ui-sref=\"items\">Items <span class=\"badge default pull-right\">{{main.items.length}}</span></a></li>\r\n            <li class=\"list-group-item\"><a ui-sref=\"form\">Form</a></li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n"
 
 /***/ },
 
@@ -111,18 +99,79 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 26:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	var angular = __webpack_require__(2);
 
-	angular.module('f5')
+	module.exports = angular.module('form', [
+	    __webpack_require__(21)
+	])
+
+	.config(function($stateProvider){
+	    $stateProvider
+	        .state('form', {
+	            url: '/form',
+	            controller: 'FormCtrl as form',
+	            template: __webpack_require__(23)
+	        })
+	})
 
 	.controller('FormCtrl', function(){
 	    this.title = 'Form';
 
 	    this.items = ['item 1', 'item 2'];
-	});
+	})
+
+	.name
+
+	;
+
+/***/ },
+
+/***/ 28:
+/***/ function(module, exports, __webpack_require__) {
+
+	var angular = __webpack_require__(2);
+
+	module.exports = angular.module('items', [
+	    __webpack_require__(21)
+	])
+
+	.config(function($stateProvider){
+	    $stateProvider
+	        .state('items', {
+	            url: '/items',
+	            template: '<h1>Items</h1><item-list items="main.items"></item-list><p><a ui-sref="form">Go to form</a></p>'
+	        })
+	})
+
+	.name
+
+	;
+
+/***/ },
+
+/***/ 29:
+/***/ function(module, exports, __webpack_require__) {
+
+	var angular = __webpack_require__(2);
+
+	module.exports = angular.module('dashboard', [
+	    __webpack_require__(21)
+	])
+
+	.config(function($stateProvider){
+	    $stateProvider
+	        .state('dashboard', {
+	            url: '/',
+	            template: __webpack_require__(22)
+	        })
+	})
+
+	.name
+
+	;
 
 /***/ }
 

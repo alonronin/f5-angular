@@ -17,7 +17,7 @@ module.exports = angular.module('f5.directives', [])
 
 .directive('itemList', function(){
     return {
-        restrict: 'E',
+        restrict: 'EA',
         scope: {
             items: '='
         },

@@ -18,6 +18,13 @@ module.exports = {
         filename: 'bundle.js'
     },
 
+    module: {
+        loaders: [
+            { test: /.html$/, loader: 'raw'}
+        ]
+
+    },
+
     plugins: [
         new webpack.ProvidePlugin({
             jQuery: 'jquery'

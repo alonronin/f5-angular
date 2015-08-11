@@ -1,0 +1,17 @@
+<form name="frm_add_item" class="form-inline" ng-submit="frm_add_item.$valid && list.addItem(list.item)" novalidate>
+    <div class="form-group" ng-class="{'has-error': (frm_add_item.$submitted && frm_add_item.item.$invalid) || (frm_add_item.$dirty && frm_add_item.item.$invalid)}">
+        <input class="form-control" name="item" ng-model="list.item" type="text" required />
+        <button class="btn btn-default" type="submit" ng-disabled="frm_add_item.$invalid">Add Item</button>
+    </div>
+</form>
+
+<br/>
+
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in list.items track by $index">
+        {{item}}
+
+        <a href="" class="btn btn-default pull-right" ng-click="list.removeItem(item)">Delete</a>
+        <div class="clearfix"></div>
+    </li>
+</ul>

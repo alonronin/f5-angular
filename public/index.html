@@ -11,22 +11,7 @@
 <div class="container" ng-controller="MainCtrl as main">
     <h1 ng-bind="main.title"></h1>
 
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="item in main.items track by $index">
-            {{item}}
-
-            <a href="" class="btn btn-default pull-right" ng-click="main.removeItem(item)">Delete</a>
-            <div class="clearfix"></div>
-        </li>
-    </ul>
-
-    <form name="frm_add_item" class="form-inline" ng-submit="frm_add_item.$valid && main.addItem(main.item)" novalidate>
-        <div class="form-group" ng-class="{'has-error': (frm_add_item.$submitted && frm_add_item.item.$invalid) || (frm_add_item.$dirty && frm_add_item.item.$invalid)}">
-            <input class="form-control" name="item" ng-model="main.item" type="text" required />
-            <span ng-if="frm_add_item.$submitted && frm_add_item.item.$error.required">You must add an Itme</span>
-            <button class="btn btn-default" type="submit">Add Item</button>
-        </div>
-    </form>
+    <item-list items="main.items"></item-list>
 
     <br/>
 

@@ -5,22 +5,17 @@ var _ = require('lodash');
 
 var angular = require('angular');
 
-angular.module('f5', [])
+angular.module('f5', [
+    require('./list.items')
+])
 
-.controller('MainCtrl', function($scope, $timeout, ListItems){
+.config(function($logProvider){
+    $logProvider.debugEnabled(true);
+})
+
+.controller('MainCtrl', function($scope, $timeout, $log, ListItems){
     this.title = 'F5 Angular';
     this.items = ListItems.items;
-
-    this.addItem = function(item){
-        this.items.push(item);
-        this.item = '';
-    };
-
-    this.removeItem = function(item){
-        _.remove(this.items, function(i){
-            return i === item;
-        });
-    };
 
     $timeout(function(){
         this.title = 'F5 Title Changed'

@@ -8,7 +8,10 @@ module.exports = angular.module('items', [
     $stateProvider
         .state('items', {
             url: '/items',
-            template: '<h1>Items</h1><item-list items="main.items"></item-list><p><a ui-sref="form">Go to form</a></p>'
+            template: '<item-list items="main.items"></item-list>',
+            data: {
+                title: 'Items'
+            }
         })
 })
 

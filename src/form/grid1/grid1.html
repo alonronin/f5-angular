@@ -1,0 +1,49 @@
+<h3>Grid 1</h3>
+
+<input type="text" ng-model="grid.search" placeholder="Search"/>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Active</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in grid.items | filter:grid.search track by $index">
+			<td>{{item.name}}</td>
+			<td>{{item.description}}</td>
+			<td>{{item.active}}</td>
+		</tr>
+	</tbody>
+</table>
+
+<form class="form-horizontal">
+	<div class="form-group">
+		<label for="name" class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-10">
+			<input type="text" id="name" ng-model="grid.item.name" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="desc" class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-10">
+			<input type="text" id="desc" ng-model="grid.item.description" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" ng-model="grid.item.active" /> Active
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-default" ng-click="grid.addItem(grid.item)">Add</button>
+		</div>
+	</div>
+</form>

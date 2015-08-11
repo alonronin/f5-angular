@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Item 1",
+    "description": "Item 1 description",
+    "active": true
+  },
+
+  {
+    "name": "Item 2",
+    "description": "Item 2 description",
+    "active": false
+  },
+
+  {
+    "name": "Item 3",
+    "description": "Item 3 description",
+    "active": false
+  },
+
+  {
+    "name": "Item 4",
+    "description": "Item 4 description",
+    "active": true
+  }
+]

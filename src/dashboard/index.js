@@ -8,7 +8,10 @@ module.exports = angular.module('dashboard', [
     $stateProvider
         .state('dashboard', {
             url: '/',
-            template: require('./dashboard.html')
+            template: require('./dashboard.html'),
+            data: {
+                title: 'Dashboard'
+            }
         })
 })
 

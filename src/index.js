@@ -19,10 +19,19 @@ angular.module('f5', [
 })
 
 .controller('MainCtrl', function($scope, $timeout, $log, $state, ListItems){
-    this.title = 'F5 Angular';
+    this.name = 'F5 Angular';
     this.items = ListItems.items;
 
-    this.menu = _($state.get()).pluck('name').compact().value();
+    this.menu = _($state.get())
+        .filter(function(item){ return !item.parent && item.name !== ''} )
+        .map(function(item){
+            return { name: item.name, data: item.data };
+        })
+        .value();
+
+    $scope.$on('$stateChangeSuccess', function(e){
+        this.title = $state.current.data.title;
+    }.bind(this))
 })
 
 .service('ListItems', function(){

@@ -226,7 +226,7 @@ webpackJsonp([0],[
 	})
 
 	.controller('Grid1Ctrl', function(Grid1Service, $log){
-	    Grid1Service.query().$promise.then(
+	    Grid1Service.query().then(
 	        function success(items){
 	            this.items = items;
 	        }.bind(this),
@@ -243,20 +243,46 @@ webpackJsonp([0],[
 	        this.item = {};
 
 	        Grid1Service.save(item)
-	            .$promise
-	            .then(
-	                function success(data){
-	                    $log.debug(data);
-	                },
-	                function fail(reqson){}
-	            )
+	        .then(
+	            function success(data){
+	                $log.debug(data);
+	            },
+	            function fail(reqson){}
+	        )
 	    }
 	})
 
 	.service('Grid1Service', function($resource){
+
+	    /**
+	     *
+	     * @param name
+	     * @param description
+	     * @param active
+	     */
+	    var GridItem = function(
+	        name,
+	        description,
+	        active
+	    ){
+	        this.name = name;
+	        this.description = description;
+	        this.active = !!active;
+	    };
+
 	    var resource = $resource('/api/grid1');
 
-	    return resource;
+	    this.query = function() {
+	        return resource.query().$promise.then(function(data){
+	            return _.map(data, function(item){
+	                return new GridItem(item.name, item.description, item.active)
+	            })
+	        })
+	    };
+
+	    this.save = function(data){
+	        return resource.save(data).$promise;
+	    }
 	})
 
 	.name
@@ -293,7 +319,7 @@ webpackJsonp([0],[
 /* 32 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3>Grid 1</h3>\r\n\r\n<input type=\"text\" ng-model=\"grid.search\" placeholder=\"Search\"/>\r\n\r\n<table class=\"table table-hover\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th>Name</th>\r\n\t\t\t<th>Description</th>\r\n\t\t\t<th>Active</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr ng-repeat=\"item in grid.items | filter:grid.search track by $index\">\r\n\t\t\t<td>{{item.name}}</td>\r\n\t\t\t<td>{{item.description}}</td>\r\n\t\t\t<td>{{item.active}}</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<form class=\"form-horizontal\">\r\n\t<div class=\"form-group\">\r\n\t\t<label for=\"name\" class=\"col-sm-2 control-label\">Name</label>\r\n\t\t<div class=\"col-sm-10\">\r\n\t\t\t<input type=\"text\" id=\"name\" ng-model=\"grid.item.name\" />\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"form-group\">\r\n\t\t<label for=\"desc\" class=\"col-sm-2 control-label\">Description</label>\r\n\t\t<div class=\"col-sm-10\">\r\n\t\t\t<input type=\"text\" id=\"desc\" ng-model=\"grid.item.description\" />\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"form-group\">\r\n\t\t<div class=\"col-sm-offset-2 col-sm-10\">\r\n\t\t\t<div class=\"checkbox\">\r\n\t\t\t\t<label>\r\n\t\t\t\t\t<input type=\"checkbox\" ng-model=\"grid.item.active\" /> Active\r\n\t\t\t\t</label>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"form-group\">\r\n\t\t<div class=\"col-sm-offset-2 col-sm-10\">\r\n\t\t\t<button type=\"submit\" class=\"btn btn-default\" ng-click=\"grid.addItem(grid.item)\">Add</button>\r\n\t\t</div>\r\n\t</div>\r\n</form>"
+	module.exports = "<h3>Grid 1</h3>\r\n\r\n<input type=\"text\" ng-model=\"grid.search\" placeholder=\"Search\" ng-model-options=\"{ debounce: 500 }\"/>\r\n\r\n<table class=\"table table-hover\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th>Name</th>\r\n\t\t\t<th>Description</th>\r\n\t\t\t<th>Active</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr ng-repeat=\"item in grid.items | filter:grid.search track by $index\">\r\n\t\t\t<td>{{item.name}}</td>\r\n\t\t\t<td>{{item.description}}</td>\r\n\t\t\t<td>{{item.active}}</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<form class=\"form-horizontal\">\r\n\t<div class=\"form-group\">\r\n\t\t<label for=\"name\" class=\"col-sm-2 control-label\">Name</label>\r\n\t\t<div class=\"col-sm-10\">\r\n\t\t\t<input type=\"text\" id=\"name\" ng-model=\"grid.item.name\" />\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"form-group\">\r\n\t\t<label for=\"desc\" class=\"col-sm-2 control-label\">Description</label>\r\n\t\t<div class=\"col-sm-10\">\r\n\t\t\t<input type=\"text\" id=\"desc\" ng-model=\"grid.item.description\" />\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"form-group\">\r\n\t\t<div class=\"col-sm-offset-2 col-sm-10\">\r\n\t\t\t<div class=\"checkbox\">\r\n\t\t\t\t<label>\r\n\t\t\t\t\t<input type=\"checkbox\" ng-model=\"grid.item.active\" /> Active\r\n\t\t\t\t</label>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"form-group\">\r\n\t\t<div class=\"col-sm-offset-2 col-sm-10\">\r\n\t\t\t<button type=\"submit\" class=\"btn btn-default\" ng-click=\"grid.addItem(grid.item)\">Add</button>\r\n\t\t</div>\r\n\t</div>\r\n</form>"
 
 /***/ }
 ]);

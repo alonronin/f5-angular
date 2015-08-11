@@ -16,7 +16,7 @@ module.exports = angular.module('form.grid1', [
 })
 
 .controller('Grid1Ctrl', function(Grid1Service, $log){
-    Grid1Service.query().$promise.then(
+    Grid1Service.query().then(
         function success(items){
             this.items = items;
         }.bind(this),
@@ -33,20 +33,46 @@ module.exports = angular.module('form.grid1', [
         this.item = {};
 
         Grid1Service.save(item)
-            .$promise
-            .then(
-                function success(data){
-                    $log.debug(data);
-                },
-                function fail(reqson){}
-            )
+        .then(
+            function success(data){
+                $log.debug(data);
+            },
+            function fail(reqson){}
+        )
     }
 })
 
 .service('Grid1Service', function($resource){
+
+    /**
+     *
+     * @param name
+     * @param description
+     * @param active
+     */
+    var GridItem = function(
+        name,
+        description,
+        active
+    ){
+        this.name = name;
+        this.description = description;
+        this.active = !!active;
+    };
+
     var resource = $resource('/api/grid1');
 
-    return resource;
+    this.query = function() {
+        return resource.query().$promise.then(function(data){
+            return _.map(data, function(item){
+                return new GridItem(item.name, item.description, item.active)
+            })
+        })
+    };
+
+    this.save = function(data){
+        return resource.save(data).$promise;
+    }
 })
 
 .name

@@ -14,7 +14,11 @@ angular.module('f5', [
     require('./form')
 ])
 
-.config(function($logProvider){
+.config(function($logProvider, $urlRouterProvider, $locationProvider){
+
+    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
+
     $logProvider.debugEnabled(true);
 })
 

@@ -17,8 +17,7 @@
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0",
-    "ui-router": "0.0.1"
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "raw-loader": "^0.5.1",

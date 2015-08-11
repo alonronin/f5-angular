@@ -14,6 +14,7 @@ go to http://localhost:3000
 - bootstrap: http://getbootstrap.com/
 - angular: https://docs.angularjs.org/api
 - devdocs: http://devdocs.io/
+- angular cheat sheets: https://egghead.io/articles/angularjs-core-services-directive-definition-object-and-ui-router-cheat-sheets
 
 ##Commands
 
